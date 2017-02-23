@@ -16,7 +16,7 @@ Aggregated results are stored in tournament.txt
 Unpublished work (c)2013 Project Lead The Way
 CSE Project 1.3.5 Collaborating on a Project
 Draft, Do Not Distribute
-Version 2/17/2017 
+Version 2/17/2017 TLM & AA
 '''
 
 import random
@@ -201,15 +201,19 @@ def get_action(player, history, opponent_history, score, opponent_score, getting
     #
     elif player == 4:
         if getting_team_name:
-            return 'betray every 3rd round'
+            return 'You Will Never Know'
         else:
             # use history, opponent_history, score, opponent_score
             # to compute your strategy
-            size = len(history)
-            if(size%3==0): #the number of rounds played is a multiple of 3
+            if opponent_history[0:7]=='winning':
                 return 'c'
+            elif len(opponent_history)==0:
+                return 'winning'
+            elif opponent_history[0:7] == 'bbbbbbb':
+                return 5
             else:
                 return 'b'
+                
     
     
     
@@ -226,16 +230,22 @@ def get_action(player, history, opponent_history, score, opponent_score, getting
     #
     elif player == 5:
         if getting_team_name:
-            return 'loyal vengeful'
+            return 'You Will Never Know'
         else:
             # use history, opponent_history, score, opponent_score
             # to compute your strategy
-            if len(opponent_history)==0: #It's the first round: collude
-                return 'c'
-            elif history[-1]=='c' and opponent_history[-1]=='b':
-                return 'b' # betray is they were severely punished last time
+            if opponent_history[0:7]=='winning': 
+                return 'b'
+            elif len(opponent_history)==0:
+                return 'winning'
+            elif opponent_history[0:7] == 'bbbbbbb':
+                return 5
             else:
-                return 'c' #otherwise collude
+                end = random.randint(1,100)
+                if end == 49:
+                    return 'c'
+                else:
+                    return opponent_history[-1]
     
     
     
