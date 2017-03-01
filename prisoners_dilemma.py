@@ -238,7 +238,7 @@ def get_action(player, history, opponent_history, score, opponent_score, getting
                 return 'b'
             elif len(opponent_history)==0:
                 return 'winning'
-            elif opponent_history[0:7] == 'bbbbbbb':
+            elif opponent_history[0:7] == 'bbbbxbb':
                 return 5
             else:
                 end = random.randint(1,100)
