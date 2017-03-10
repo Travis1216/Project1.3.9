@@ -201,16 +201,13 @@ def get_action(player, history, opponent_history, score, opponent_score, getting
     #
     elif player == 4:
         if getting_team_name:
-            return 'You Will Never Know'
+            return 'betray every 3rd round'
         else:
             # use history, opponent_history, score, opponent_score
             # to compute your strategy
-            if opponent_history[0:7]=='winning':
+            size = len(history)
+            if(size%3==0): #the number of rounds played is a multiple of 3
                 return 'c'
-            elif len(opponent_history)==0:
-                return 'winning'
-            elif opponent_history[0:7] == 'bbbbbbb':
-                return 5
             else:
                 return 'b'
                 
@@ -230,7 +227,7 @@ def get_action(player, history, opponent_history, score, opponent_score, getting
     #
     elif player == 5:
         if getting_team_name:
-            return 'You Will Never Know'
+            return 'TLMAA'
         else:
             # use history, opponent_history, score, opponent_score
             # to compute your strategy
@@ -238,7 +235,7 @@ def get_action(player, history, opponent_history, score, opponent_score, getting
                 return 'b'
             elif len(opponent_history)==0:
                 return 'winning'
-            elif opponent_history[0:7] == 'bbbbxbb':
+            elif opponent_history[0:7] == 'bbbbbbb':
                 return 5
             else:
                 end = random.randint(1,100)
